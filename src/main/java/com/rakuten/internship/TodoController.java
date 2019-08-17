@@ -1,5 +1,7 @@
 package com.rakuten.internship;
 
+import java.util.List;
+
 import com.rakuten.internship.entity.Todo;
 import com.rakuten.internship.service.TodoService;
 
@@ -17,23 +19,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TodoController {
 
-    // TODO 必要なメンバーを宣言してください。
+    @Autowired
+    private TodoService todoService;
 
+    /**
+     * ホーム画面を表示します
+     * @param model モデル
+     * @return ホーム画面
+     */
     @GetMapping("/")
     public String home(Model model) {
-        // TODO 必要なコードを作成してください。
-        return null;
+        List<Todo> todos = todoService.findTodos();
+        model.addAttribute(todos);
+        return "home";
     }
 
+    /**
+     * 入力フォームを表示します
+     * @return 入力フォーム
+     */
     @GetMapping("/create")
     public String create() {
-        // TODO 必要なコードを作成してください。
-        return null;
+        return "create";
     }
 
+    /**
+     * 登録して完了画面を表示します
+     * @param todo Todo
+     * @return 完了画面
+     */
     @PostMapping("/create")
     public String createTodo(@ModelAttribute Todo todo) {
-        // TODO 必要なコードを作成してください。
-        return null;
+        todoService.save(todo);
+        return "complete";
     }
 }
