@@ -30,7 +30,7 @@ public class TodoController {
     @GetMapping("/")
     public String home(Model model) {
         List<Todo> todos = todoService.findTodos();
-        model.addAttribute(todos);
+        model.addAttribute("todos", todos);
         return "home";
     }
 
