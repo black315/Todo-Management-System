@@ -1,9 +1,11 @@
 <html>
   <title>Summer Short Internship 2019</title>
   <script type="text/javascript">
-    document.getElementById("btn").onclick = function() {
-      location.href = "/create";
-    };
+    window.onload = function(){
+      document.getElementById("btn").addEventListener("click", function(){
+        location.href = "/create"
+      });
+    }
   </script>
   <body>
     <h1>
